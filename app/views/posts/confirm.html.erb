@@ -1,0 +1,27 @@
+<h1 class="title">投稿確認</h1>
+
+<div class="form_area">
+  <%= form_with(model: @post, url: posts_path, local:true) do |f| %>
+    <%= hidden_field_tag :"cache[image]",@post.image.cache_name %>
+    <%= f.hidden_field :caption %>
+
+    <table class="form">
+      <tr>
+        <th><%= f.label :image %></th>
+        <td><%= image_tag(@post.image) %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :caption %></th>
+        <td><%= @post.caption %></td>
+      </tr>
+    </table>
+
+    <%= f.submit "投稿", :class => "submit" %>
+  <% end %>
+
+  <%= form_with(model: @post, url:new_post_path, local:true, method:"get") do |f| %>
+    <%= hidden_field_tag :"cache[image]",@post.image.cache_name %>
+    <%= f.hidden_field :caption %>
+    <%= f.submit "戻る", :class => "submit" %>
+  <% end %>
+</div>

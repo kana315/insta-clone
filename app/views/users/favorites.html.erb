@@ -1,0 +1,6 @@
+<h1 class="title"><%= @user.name %>さんのお気に入り</h1>
+<% @favorites.each do |favorite| %>
+  <div class="index_image">
+    <%= link_to image_tag(favorite.post.image), post_path(favorite.post.id) %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+<div class="top_area">
+  <%= image_tag "top-image.jpg", :class => "top_image" %>
+  <%= image_tag "top-image-mini.jpg", :class => "mini_image" %>
+  <p>世界のあらゆる瞬間をとらえてシェアしよう</p>
+  <% unless logged_in? %>
+    <div class="top_form">
+      <p>Insta-cloneにログインして画像を投稿しよう<br></p>
+      <div class="top_btn">
+        <a class="btn" href="/users/new" role="button">新規登録</a>
+      </div>
+      <div class="top_btn">
+        <a class="btn" href="/sessions/new" role="button">ログイン</a>
+      </div>
+    </div>
+  <% end %>
+</div>

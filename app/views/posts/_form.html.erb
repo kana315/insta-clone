@@ -1,0 +1,29 @@
+<%= form_with(model:@post, url: choose_url, local: true) do |f| %>
+    <% if @post.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <div><%= @post.errors.count %>件のエラーがあります</div>
+      <ul>
+        <%= @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+  <table class="form">
+    <tr>
+      <th><%= f.label :image %></th>
+      <td>
+        <%= f.file_field :image, id: :post_image %>
+        <%= image_tag(@post.image.url) if @post.image.url %>
+        <%= f.hidden_field :image_cache %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :caption %></th>
+      <td><%= f.text_field :caption %></td>
+    </tr>
+  </table>
+  <%= f.submit "投稿", :class => "submit" %>
+
+<% end %>

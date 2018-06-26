@@ -1,0 +1,12 @@
+{
+  "name": "inst_clone",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3",
+    "jquery": "^3.3.1"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "tagu kana <taguno180n@gmail.com>",
+  "license": "MIT"
+}

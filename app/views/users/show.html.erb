@@ -1,0 +1,40 @@
+<h1 class="title"><%= @user.name %>さんのページ</h1>
+
+<div class="user_area">
+  <p class="user_icon big_icon"><%= image_tag(@user.icon) %></p>
+  <table class="form">
+    <tr>
+      <th>Name:</th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th>Email:</th>
+      <td><%= @user.email %></td>
+    </tr>
+  </table>
+  <%= link_to 'プロフィール編集', edit_user_path(@user.id) %>
+</div>
+
+<h3 class="short_title"><%= link_to 'あなたの投稿', posts_user_path(@user.id) %></h3>
+<% @post.order(:created_at).limit(3).each do |post| %>
+  <div class="index_image">
+    <%= link_to image_tag(post.image), post_path(post.id) %>
+  </div>
+<% end %>
+<% if @post.count > 3 %>
+  <p><%= link_to '>もっと見る', posts_user_path(@user.id) %></p>
+<% elsif @post.count == 0 %>
+  <p class="no_posts">投稿はありません。</p>
+<% end %>
+
+<h3 class="short_title"><%= link_to 'お気に入り', favorites_user_path(@user.id) %></h3>
+<% @favorites.order(:created_at).limit(3).each do |favorite| %>
+  <div class="index_image">
+    <%= link_to image_tag(favorite.post.image), post_path(favorite.post.id), :class => "more_tag" %>
+  </div>
+<% end %>
+<% if @post.count > 3 %>
+  <p><%= link_to '>もっと見る', favorites_user_path(@user.id), :class => "more_tag" %></p>
+<% elsif @favorites.count == 0 %>
+  <p class="no_posts">お気に入りした投稿はありません。</p>
+<% end %>
